@@ -1,4 +1,4 @@
-package avaliacao.meuspedidos.sample.rest;
+package avaliacao.sample.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import avaliacao.meuspedidos.sample.entities.Question;
+import avaliacao.sample.entities.Question;
 
 @Path("/rest/service")
 public class Service {
