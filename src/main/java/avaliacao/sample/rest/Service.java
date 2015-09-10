@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import avaliacao.sample.entities.Question;
 
-@Path("/rest/service")
+@Path("/service")
 public class Service {
 
 	@GET
