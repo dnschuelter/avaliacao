@@ -14,5 +14,5 @@ import lombok.ToString;
 public class Level {
 
 	private Skill skill;
-	private Integer value;
+	private int value;
 }

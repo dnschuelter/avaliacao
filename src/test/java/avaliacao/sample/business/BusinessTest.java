@@ -1,6 +1,7 @@
 package avaliacao.sample.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import lombok.val;
 
@@ -24,12 +25,20 @@ public class BusinessTest {
 
 	@Before
 	public void setup() {
-		when(skillsDao.findAll()).thenReturn(BusinessUtils.mockListSkills());
+		when(skillsDao.findAll()).thenReturn(BusinessMockUtils.mockListSkills());
 	}
 
 	@Test
 	public void verifySize() {
 		val levels = business.allLevels();
-		assertEquals(BusinessUtils.mockListSkills().size(), levels.size());
+		assertEquals(BusinessMockUtils.mockListSkills().size(), levels.size());
+	}
+
+	@Test
+	public void verifySkillsQualified() {
+		val levels = business.allLevels();
+		val qualified = business.skillsQualified(levels);
+		assertNotNull(qualified);
+		assertEquals(0, qualified.size());
 	}
 }

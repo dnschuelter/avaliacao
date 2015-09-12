@@ -18,22 +18,20 @@ import avaliacao.sample.entities.User;
 public class Service {
 
 	@Inject
-	private Business busienss;
+	private Business business;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getLevels")
 	public List<Level> getLevels() {
-		return busienss.allLevels();
+		return business.allLevels();
 	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/finish")
-	public String finish(User user) {
-		System.out.println(user);
-		return "OK";
+	public void finish(User user) {
+		business.finish(user);
 	}
-
 }

@@ -1,29 +1,36 @@
 [
 	{
+		id: 1,
 		description: "HTML",
 		type: FRONT_END
 	},
 	{
+		id: 2,
 		description: "CSS",
 		type: FRONT_END
 	},
 	{
+		id: 3,
 		description: "Javascript",
 		type: FRONT_END
 	},
 	{
+		id: 4,
 		description: "Python",
 		type: BACK_END
 	},
 	{
+		id: 5,
 		description: "Django",
 		type: BACK_END
 	},
 	{
+		id: 6,
 		description: "Desenvolvimento iOS",
 		type: MOBILE
 	},
 	{
+		id: 7,
 		description: "Desenvolvimento Android",
 		type: MOBILE
 	}

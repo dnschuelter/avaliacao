@@ -27,7 +27,8 @@ var controller = {
 
 	finish : function() {
 		for ( var n in this.user.abilites) {
-			this.user.abilites[n].value = 7
+			console.log(n)
+			this.user.abilites[n].value = $('#level_'+this.user.abilites[n].skill.id).find('input:checked').val()
 		}
 		this.sendInformation()
 	},

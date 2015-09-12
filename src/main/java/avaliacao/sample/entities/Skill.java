@@ -15,6 +15,7 @@ public class Skill {
 
 	public static final String FILE = "/skill.json";
 
+	private Long id;
 	private String description;
 	private SkillType type;
 }
