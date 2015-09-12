@@ -1,14 +1,30 @@
 [
 	{
-		description: "Question 1 de teste",
+		description: "HTML",
 		type: FRONT_END
 	},
 	{
-		description: "Question 2 de teste",
+		description: "CSS",
+		type: FRONT_END
+	},
+	{
+		description: "Javascript",
+		type: FRONT_END
+	},
+	{
+		description: "Python",
 		type: BACK_END
 	},
 	{
-		description: "Question 3 de teste",
+		description: "Django",
+		type: BACK_END
+	},
+	{
+		description: "Desenvolvimento iOS",
+		type: MOBILE
+	},
+	{
+		description: "Desenvolvimento Android",
 		type: MOBILE
 	}
 ]

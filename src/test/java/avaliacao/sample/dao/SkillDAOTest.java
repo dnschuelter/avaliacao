@@ -13,12 +13,12 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class SkillDAOTest {
 
 	@InjectMocks
-	private SkillDAO questionsDao;
+	private SkillDAO skillsDao;
 
 	@Test
-	public void verifyFindAll() {
-		val questions = questionsDao.findAll();
+	public void verifyLoadSkills() {
+		val questions = skillsDao.findAll();
 		assertNotNull(questions);
-		assertEquals(3, questions.size());
+		assertEquals(7, questions.size());
 	}
 }
