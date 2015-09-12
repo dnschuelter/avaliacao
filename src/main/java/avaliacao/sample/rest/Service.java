@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import lombok.val;
 import avaliacao.sample.business.Business;
 import avaliacao.sample.entities.Skill;
 
@@ -22,9 +21,7 @@ public class Service {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getSkills")
 	public List<Skill> getSkills() {
-		val result = busienss.allSkills();
-		System.out.println(result);
-		return result;
+		return busienss.allSkills();
 	}
 
 }
