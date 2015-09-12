@@ -1,5 +1,29 @@
 <html>
-<body>
-<h2>Em Construcao!</h2>
-</body>
+	<head>
+		<link href="resources/commons/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="resources/commons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="resources/index/controller.js"></script>
+		<script src="resources/commons/mustache/mustache.min.js"></script>
+	</head>
+	<body>
+		<div id="user">
+			<span>Nome</span>
+			<input id="name"/>
+			<span>E-mail</span>
+			<input id="email"/>
+			<button onclick="controller.userAndMail()">Continuar</button>
+		</div>
+		<div id="skills">
+			
+		</div>
+		<script type="text/html" class="skills">
+			<h2>Avalie seu conhecimento de 0 a 10 nos seguintes itens (Campos opcionais):</h2>
+			{{#skills}}
+				<div>
+					<h4>{{description}}</h4>
+				</div>
+			{{/skills}}
+		</script>
+	</body>
 </html>

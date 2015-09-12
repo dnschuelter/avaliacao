@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import avaliacao.sample.business.Business;
-import avaliacao.sample.entities.Skill;
+import avaliacao.sample.entities.Level;
 
 @Path("/service")
 public class Service {
@@ -19,9 +19,9 @@ public class Service {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getSkills")
-	public List<Skill> getSkills() {
-		return busienss.allSkills();
+	@Path("/getLevels")
+	public List<Level> getLevels() {
+		return busienss.allLevels();
 	}
 
 }

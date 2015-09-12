@@ -28,8 +28,8 @@ public class BusinessTest {
 	}
 
 	@Test
-	public void verifyNotModifyReturn() {
-		val skills = business.allSkills();
-		assertEquals(BusinessUtils.mockListSkills().toString(), skills.toString());
+	public void verifySize() {
+		val levels = business.allSkills();
+		assertEquals(BusinessUtils.mockListSkills().size(), levels.size());
 	}
 }
