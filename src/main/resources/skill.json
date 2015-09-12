@@ -1,0 +1,30 @@
+[
+	{
+		description: "HTML",
+		type: FRONT_END
+	},
+	{
+		description: "CSS",
+		type: FRONT_END
+	},
+	{
+		description: "Javascript",
+		type: FRONT_END
+	},
+	{
+		description: "Python",
+		type: BACK_END
+	},
+	{
+		description: "Django",
+		type: BACK_END
+	},
+	{
+		description: "Desenvolvimento iOS",
+		type: MOBILE
+	},
+	{
+		description: "Desenvolvimento Android",
+		type: MOBILE
+	}
+]

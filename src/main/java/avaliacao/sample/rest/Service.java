@@ -8,16 +8,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import avaliacao.sample.entities.Question;
+import avaliacao.sample.entities.Skill;
 
 @Path("/service")
 public class Service {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getQuestions")
-	public List<Question> getQuestions() {
-		return new ArrayList<Question>();
+	@Path("/getSkill")
+	public List<Skill> getSkill() {
+		return new ArrayList<Skill>();
 	}
 
 }
