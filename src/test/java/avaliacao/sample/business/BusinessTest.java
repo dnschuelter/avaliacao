@@ -29,7 +29,7 @@ public class BusinessTest {
 
 	@Test
 	public void verifySize() {
-		val levels = business.allSkills();
+		val levels = business.allLevels();
 		assertEquals(BusinessUtils.mockListSkills().size(), levels.size());
 	}
 }

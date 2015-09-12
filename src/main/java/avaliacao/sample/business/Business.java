@@ -17,7 +17,7 @@ public class Business {
 	@Inject
 	private SkillDAO skillsDao;
 
-	public List<Level> allSkills() {
+	public List<Level> allLevels() {
 		val skills = skillsDao.findAll();
 		return skillsToLevel(skills);
 	}

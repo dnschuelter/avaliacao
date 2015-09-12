@@ -14,16 +14,19 @@
 			<input id="email"/>
 			<button onclick="controller.userAndMail()">Continuar</button>
 		</div>
-		<div id="skills">
+		<div id="level-form">
 			
 		</div>
-		<script type="text/html" class="skills">
+		<script type="text/html" class="level-template">
 			<h2>Avalie seu conhecimento de 0 a 10 nos seguintes itens (Campos opcionais):</h2>
-			{{#skills}}
+			{{#abilites}}
 				<div>
-					<h4>{{description}}</h4>
+					<h4>{{skill.description}}</h4>
 				</div>
-			{{/skills}}
+			{{/abilites}}
+			<div>
+				<button onclick="controller.finish()">Finalizar</button>
+			</div>
 		</script>
 	</body>
 </html>
