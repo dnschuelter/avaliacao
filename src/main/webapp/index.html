@@ -1,69 +1,47 @@
 <html>
-<head>
-<link href="resources/commons/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/commons/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="resources/commons/bootstrap/js/bootstrap.min.js"></script>
-<script src="resources/index/controller.js"></script>
-<script src="resources/commons/mustache/mustache.min.js"></script>
-</head>
-<body>
-	<div id="user">
-		<div>
-			<label>Nome</label>
-			<input id="name" />
+	<head>
+		<meta charset="UTF-8">
+		<link href="resources/commons/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="resources/commons/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="resources/commons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="resources/index/controller.js"></script>
+		<script src="resources/commons/mustache/mustache.min.js"></script>
+		<link href="resources/commons/star-rating/css/star-rating.min.css" rel="stylesheet">
+		<script src="resources/commons/star-rating/js/star-rating.min.js"></script>
+	</head>
+	<body>
+		<div id="user" class="text-center">
+			<h2>Bem vindo ao sistema de Auto Avaliação.</h2>
+			<h4>Vamos começar!</h4>
+			<div class="col-md-offset-4 col-md-4">
+				<div>
+		 			<input id="name" type="text" class="form-control" placeholder="Nome" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group">
+					<input id="email" type="text" class="form-control" placeholder="E-mail"/>
+				    <span class="input-group-btn">
+				    	<button class="btn btn-default" type="button" onclick="controller.userAndMail()">Continuar</button>
+				    </span>
+				</div>
+			</div>
 		</div>
-		<div>
-			<label>E-mail</label> 
-			<input id="email" />
-		</div>
-		<button onclick="controller.userAndMail()">Continuar</button>
-	</div>
-	<div id="level-form"></div>
-	<script type="text/html" class="level-template">
+		<div id="level-form" class="col-md-offset-1 col-md-10"></div>
+		<script type="text/html" class="level-template">
 			<h2>Avalie seu conhecimento de 0 a 10 nos seguintes itens (Campos opcionais):</h2>
-			{{#abilites}}
-			<div class="row">
-				<div class="col-md-4">
-					<label>{{skill.description}}</label>
+			<form class="form-horizontal">
+				{{#abilites}}
+				<div class="form-group form-group-lg">
+					<label class="col-md-4 control-label">{{skill.description}}</label>
+					<div class="col-md-8">
+						<input id="level_{{skill.id}}" type="number" class="rating" min="0" max="10" step="1">
+					</div>
 				</div>
-			</div>
-			<div class="row text-center" id="level_{{skill.id}}">
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_1" value="1"/>1</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_2" value="2"/>2</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_3" value="3"/>3</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_4" value="4"/>4</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_5" value="5"/>5</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_6" value="6"/>6</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_7" value="7"/>7</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_8" value="8"/>8</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_9" value="9"/>9</label>
-				</div>
-				<div class="col-md-1">
-					<label class="radio inline"><input type="radio" name="level_{{skill.id}}" id="{{skill.id}}_10" value="10" checked/>10</label>
-				</div>
-			</div>
-			{{/abilites}}
-			<div>
-				<button onclick="controller.finish()">Finalizar</button>
+				{{/abilites}}
+			</form>
+			<div class="col-md-offset-8 col-md-2 blockquote-reverse">
+				<button type="button" class="btn btn-primary" onclick="controller.finish()">Finalizar</button>
 			</div>
 		</script>
-</body>
+	</body>
 </html>
