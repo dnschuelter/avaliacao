@@ -7,8 +7,16 @@ var controller = {
 			name : $('#name').val(),
 			email : $('#email').val()
 		}
-		this.loadLevels()
-		$('#user').hide()
+		if(this.validateFields()){
+			this.loadLevels()
+			$('#user').hide()
+		}else{
+			$('#user').prepend($(".alert-required").html())
+		}
+	},
+	
+	validateFields: function(){
+		return (this.user.name != "") && (this.user.email != "")
 	},
 
 	loadLevels : function() {
@@ -64,6 +72,8 @@ var controller = {
 			this.user.abilites[n].value = $('#level_'+this.user.abilites[n].skill.id).val()
 		}
 		this.sendInformation()
+		$('#level-form').hide()
+		$('#finish').append($(".finish").html())
 	},
 
 	sendInformation : function() {

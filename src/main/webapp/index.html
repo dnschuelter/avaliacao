@@ -27,6 +27,7 @@
 			</div>
 		</div>
 		<div id="level-form" class="col-md-offset-1 col-md-10"></div>
+		<div id="finish" class="col-md-offset-1 col-md-10"></div>
 		<script type="text/html" class="level-template">
 			<h2>Avalie seu conhecimento de 0 a 10 nos seguintes itens (Campos opcionais):</h2>
 			<form class="form-horizontal">
@@ -42,6 +43,15 @@
 			<div class="col-md-offset-8 col-md-2 blockquote-reverse">
 				<button type="button" class="btn btn-primary" onclick="controller.finish()">Finalizar</button>
 			</div>
+		</script>
+		<script type="text/html" class="alert-required">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong>Campos Obrigatórios!</strong> Favor preencher Nome e E-mail.
+			</div>
+		</script>
+		<script type="text/html" class="finish">
+			<div class="alert alert-success" role="alert"><strong>Auto Avaliação realizada com sucesso!</strong> Enviaremos um e-mail para você - verifique sua caixa de entrada e caixa de spam ;)</div>
 		</script>
 	</body>
 </html>
