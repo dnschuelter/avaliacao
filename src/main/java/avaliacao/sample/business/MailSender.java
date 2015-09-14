@@ -20,7 +20,8 @@ public class MailSender {
 
 	private static final String MAIL_GMAIL_USER = "teste.auto.avaliacao@gmail.com";
 	// private static final String MAIL_GMAIL_PASS = "teste.auto.avaliacao@123";
-	private static final String MAIL_GMAIL_PASS = "xyqzsovqxxbyhoak";
+	private static final String MAIL_GMAIL_PASS = "anscbqlktelejini";
+	// private static final String MAIL_GMAIL_PASS = "xhzdrteaxxuzxdgy";
 	private final String SUBJECT = "Obrigado por se candidatar";
 
 	public void sendToSkills(List<SkillType> skills, String email) {
@@ -52,7 +53,7 @@ public class MailSender {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
 
-		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(MAIL_GMAIL_USER, MAIL_GMAIL_PASS);
 			}

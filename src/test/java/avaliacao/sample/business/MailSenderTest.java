@@ -22,11 +22,6 @@ public class MailSenderTest {
 	private MailSender mailSender;
 
 	@Test
-	public void sendMail() {
-		// mailSender.sendMail("teste@gmail.com", "Teste");
-	}
-
-	@Test
 	public void testeMail3Skills() {
 		val expected = INIT_MAIL + "para programador Mobile, Back-End ou Front-End " + END_MAIL;
 		val mail = mailSender.mountMailBySkills(new ArrayList<SkillType>() {
