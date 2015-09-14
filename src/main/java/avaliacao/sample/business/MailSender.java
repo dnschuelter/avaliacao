@@ -4,38 +4,53 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import lombok.val;
 import avaliacao.sample.entities.SkillType;
+
+import com.sendgrid.SendGrid;
+import com.sendgrid.SendGridException;
 
 @Stateless
 public class MailSender {
 
-	private final String MAIL_TOKEN = "f72d17b52905a2b4296a473e856f49224408d2e8";
+	private final String MAIL_TOKEN = "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";
+	private final String SUBJECT = "Obrigado por se candidatar";
 
-	public void sendToSkills(List<SkillType> keySet, String email) {
-		System.out.println(email + ": " + keySet);
-		sendMail("dn.schuelter@gmail.com");
+	public void sendToSkills(List<SkillType> skills, String email) {
+		val mail = mountMailBySkills(skills);
+		sendMail(email, mail);
 	}
 
-	public void sendMail(String to) {
-		// String from = "sandbox@sparkpostbox.com";
-		// String host = "smtp.sparkpostmail.com";
-		// Properties properties = System.getProperties();
-		// properties.setProperty("mail.user", "SMTP_Injection");
-		// properties.setProperty("mail.password", MAIL_TOKEN);
-		// properties.setProperty("mail.smtp.host", host);
-		// Session session = Session.getDefaultInstance(properties);
-		//
-		// try {
-		// MimeMessage message = new MimeMessage(session);
-		// message.setFrom(new InternetAddress(from));
-		// message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-		// message.setSubject("This is the Subject Line!");
-		// message.setText("This is actual message");
-		//
-		// Transport.send(message);
-		// System.out.println("Sent message successfully....");
-		// } catch (MessagingException mex) {
-		// mex.printStackTrace();
-		// }
+	public String mountMailBySkills(List<SkillType> skills) {
+		String mailStr = "";
+		for (int i = skills.size() - 1; i >= 0; i--) {
+			if (i == 0)
+				mailStr = "para programador " + mailStr + skills.get(i).getDescription() + " ";
+			if (i == 1)
+				mailStr = mailStr + skills.get(i).getDescription() + " ou ";
+			if (i > 1)
+				mailStr = mailStr + skills.get(i).getDescription() + ", ";
+		}
+		mailStr = "Obrigado por se candidatar, assim que tivermos uma vaga disponível " + mailStr + "entraremos em contato.";
+		return mailStr;
+	}
+
+	public void sendMail(String to, String mail) {
+		SendGrid sendgrid = new SendGrid("avaliacao", MAIL_TOKEN);
+
+		SendGrid.Email email = new SendGrid.Email();
+
+		email.addTo(to);
+		email.setFrom("you@youremail.com");
+		email.setSubject(SUBJECT);
+		email.setHtml(mail);
+
+		try {
+			SendGrid.Response response = sendgrid.send(email);
+			System.out.println(response.getMessage());
+		} catch (SendGridException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

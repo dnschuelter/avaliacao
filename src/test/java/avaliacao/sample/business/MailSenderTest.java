@@ -1,33 +1,77 @@
 package avaliacao.sample.business;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+
+import lombok.val;
+
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.sendgrid.SendGrid;
-import com.sendgrid.SendGridException;
+import avaliacao.sample.entities.SkillType;
 
-//@RunWith(PowerMockRunner.class)
+@RunWith(PowerMockRunner.class)
 public class MailSenderTest {
 
-	// @InjectMocks
+	private static final String END_MAIL = "entraremos em contato.";
+	private static final String INIT_MAIL = "Obrigado por se candidatar, assim que tivermos uma vaga disponível ";
+	@InjectMocks
 	private MailSender mailSender;
 
 	@Test
+	@Ignore
 	public void sendMail() {
-		SendGrid sendgrid = new SendGrid("avaliacao", "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");
 
-		SendGrid.Email email = new SendGrid.Email();
+	}
 
-		email.addTo("dn.schuelter@gmail.com");
-		email.setFrom("you@youremail.com");
-		email.setSubject("Sending with SendGrid is Fun");
-		email.setHtml("and easy to do anywhere, even with Java");
+	@Test
+	public void testeMail3Skills() {
+		val expected = INIT_MAIL + "para programador Mobile, Back-End ou Front-End " + END_MAIL;
+		val mail = mailSender.mountMailBySkills(new ArrayList<SkillType>() {
+			private static final long serialVersionUID = 1L;
+			{
+				add(SkillType.FRONT_END);
+				add(SkillType.BACK_END);
+				add(SkillType.MOBILE);
+			}
+		});
+		assertEquals(expected, mail);
+	}
 
-		try {
-			SendGrid.Response response = sendgrid.send(email);
-			System.out.println(response.getMessage());
-		} catch (SendGridException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@Test
+	public void testeMail2Skills() {
+		val expected = INIT_MAIL + "para programador Back-End ou Front-End " + END_MAIL;
+		val mail = mailSender.mountMailBySkills(new ArrayList<SkillType>() {
+			private static final long serialVersionUID = 1L;
+			{
+				add(SkillType.FRONT_END);
+				add(SkillType.BACK_END);
+			}
+		});
+		assertEquals(expected, mail);
+	}
+
+	@Test
+	public void testeMail1Skills() {
+		val expected = INIT_MAIL + "para programador Front-End " + END_MAIL;
+		val mail = mailSender.mountMailBySkills(new ArrayList<SkillType>() {
+			private static final long serialVersionUID = 1L;
+			{
+				add(SkillType.FRONT_END);
+			}
+		});
+		assertEquals(expected, mail);
+	}
+
+	@Test
+	public void testeMail0Skills() {
+		val expected = INIT_MAIL + END_MAIL;
+		val mail = mailSender.mountMailBySkills(new ArrayList<SkillType>());
+		assertEquals(expected, mail);
+
 	}
 }
