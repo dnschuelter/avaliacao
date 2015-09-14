@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import lombok.val;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,9 +22,8 @@ public class MailSenderTest {
 	private MailSender mailSender;
 
 	@Test
-	@Ignore
 	public void sendMail() {
-
+		// mailSender.sendMail("teste@gmail.com", "Teste");
 	}
 
 	@Test

@@ -1,19 +1,26 @@
 package avaliacao.sample.business;
 
 import java.util.List;
+import java.util.Properties;
 
 import javax.ejb.Stateless;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import lombok.val;
 import avaliacao.sample.entities.SkillType;
 
-import com.sendgrid.SendGrid;
-import com.sendgrid.SendGridException;
-
 @Stateless
 public class MailSender {
 
-	private final String MAIL_TOKEN = "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";
+	private static final String MAIL_GMAIL_USER = "teste.auto.avaliacao@gmail.com";
+	// private static final String MAIL_GMAIL_PASS = "teste.auto.avaliacao@123";
+	private static final String MAIL_GMAIL_PASS = "xyqzsovqxxbyhoak";
 	private final String SUBJECT = "Obrigado por se candidatar";
 
 	public void sendToSkills(List<SkillType> skills, String email) {
@@ -36,21 +43,41 @@ public class MailSender {
 	}
 
 	public void sendMail(String to, String mail) {
-		SendGrid sendgrid = new SendGrid("avaliacao", MAIL_TOKEN);
+		Properties props = new Properties();
+		/** Parâmetros de conexão com servidor Gmail */
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
 
-		SendGrid.Email email = new SendGrid.Email();
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(MAIL_GMAIL_USER, MAIL_GMAIL_PASS);
+			}
+		});
 
-		email.addTo(to);
-		email.setFrom("you@youremail.com");
-		email.setSubject(SUBJECT);
-		email.setHtml(mail);
+		/** Ativa Debug para sessão */
+		session.setDebug(true);
 
 		try {
-			SendGrid.Response response = sendgrid.send(email);
-			System.out.println(response.getMessage());
-		} catch (SendGridException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(MAIL_GMAIL_USER));
+
+			Address[] toUser = InternetAddress.parse(to);
+
+			message.setRecipients(Message.RecipientType.TO, toUser);
+			message.setSubject(SUBJECT);
+			message.setText(mail);
+			/** Método para enviar a mensagem criada */
+			session.getTransport("smtps").send(message);
+
+			System.out.println("Feito!!!");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
